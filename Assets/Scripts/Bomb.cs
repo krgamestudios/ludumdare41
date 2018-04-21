@@ -46,9 +46,11 @@ public class Bomb : MonoBehaviour {
 	}
 
 	IEnumerator ExplodeAfter(float delay) {
-		yield return new WaitForSeconds (delay);
-		explosion.SetActive (true);
-		transform.DetachChildren ();
-		Destroy (gameObject);
+		if (delay >= 0) {
+			yield return new WaitForSeconds (delay);
+			explosion.SetActive (true);
+			transform.DetachChildren ();
+			Destroy (gameObject);
+		}
 	}
 }

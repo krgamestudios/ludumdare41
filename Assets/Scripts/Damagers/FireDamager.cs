@@ -5,7 +5,7 @@ using UnityEngine;
 //shootable
 public class FireDamager : DamagerBase {
 	void OnTriggerEnter2D(Collider2D collider) {
-		if (collider.gameObject.GetComponent<FireDamager> () == null) { //pass through other instances of self
+		if (collider.gameObject.GetComponent<FireDamager> () == null && collider.gameObject.GetComponent<BlockGap> () == null) { //pass through other instances of self
 			Destroy (gameObject);
 		}
 	}

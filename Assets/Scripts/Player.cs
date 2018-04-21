@@ -29,11 +29,14 @@ public class Player : MonoBehaviour {
 		animator = GetComponent<Animator> ();
 		rigidBody = GetComponent<Rigidbody2D> ();
 
-		speed = 1f;
+		speed = 0.79f;
 	}
 
 	void Update() {
 		HandleInput ();
+	}
+
+	void FixedUpdate() {
 		Move ();
 		Attack ();
 		SendAnimationInfo ();

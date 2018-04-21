@@ -11,6 +11,8 @@ public class BlockIce : MonoBehaviour {
 
 	void Awake() {
 		rigidBody = GetComponent<Rigidbody2D> ();
+
+		rigidBody.Sleep ();
 	}
 
 	void OnTriggerEnter2D(Collider2D collider) {

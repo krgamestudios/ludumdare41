@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 	public enum Mode {
-		FIRE, ICE, WIND
+		FIRE, ICE, WIND,
+		LAST
 	};
 
 	Animator animator;
@@ -55,6 +56,9 @@ public class Player : MonoBehaviour {
 
 		if (Input.GetButtonDown("Switch")) {
 			mode += 1;
+			if (mode == Mode.LAST) {
+				mode = 0;
+			}
 		}
 	}
 

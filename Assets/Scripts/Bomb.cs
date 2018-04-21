@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Bomb : MonoBehaviour {
+	Rigidbody2D rigidBody;
+
 	public float timer;
 
 	GameObject explosion;
 	public GameObject iceBlockPrefab;
 
 	float birthTime;
+
+	void Awake() {
+		rigidBody = GetComponent<Rigidbody2D> ();
+	}
 
 	void Start() {
 		StartCoroutine (ExplodeAfter (timer));
@@ -31,6 +37,11 @@ public class Bomb : MonoBehaviour {
 			iceBlock.transform.position = transform.position;
 			iceBlock.GetComponent<BlockIce> ().bombTimer = timer - (Time.time - birthTime);
 			Destroy (gameObject);
+		}
+
+		WindDamager wind = collider.gameObject.GetComponent<WindDamager> ();
+		if (wind != null) {
+			rigidBody.AddForce (collider.gameObject.GetComponent<Rigidbody2D> ().velocity / 2, ForceMode2D.Impulse);
 		}
 	}
 

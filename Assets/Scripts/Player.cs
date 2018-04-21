@@ -3,13 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
+	public enum Mode {
+		FIRE, ICE, WIND
+	};
+
 	Animator animator;
 	Rigidbody2D rigidBody;
 
+	//movement
 	float speed;
 	Vector2 deltaForce;
-	Vector2 lastDirection;
+	Vector2 lastDirection = new Vector2(0, -1);
+
+	//attacking
 	bool isShooting;
+	float lastAttack = float.NegativeInfinity;
+	const float attackDelay = 0.5f;
+	Mode mode = Mode.FIRE;
+	public GameObject firePelletPrefab;
+	public GameObject icePelletPrefab;
+	public GameObject windPelletPrefab;
 
 	void Awake() {
 		animator = GetComponent<Animator> ();
@@ -21,6 +34,7 @@ public class Player : MonoBehaviour {
 	void Update() {
 		HandleInput ();
 		Move ();
+		Attack ();
 		SendAnimationInfo ();
 	}
 
@@ -38,6 +52,10 @@ public class Player : MonoBehaviour {
 
 		//calculate if shooting
 		isShooting = Input.GetButton ("Attack");
+
+		if (Input.GetButtonDown("Switch")) {
+			mode += 1;
+		}
 	}
 
 	void Move() {
@@ -47,9 +65,53 @@ public class Player : MonoBehaviour {
 		rigidBody.AddForce (impulse, ForceMode2D.Impulse);
 	}
 
+	void Attack() {
+		if (Time.time - lastAttack > attackDelay && isShooting) {
+			lastAttack = Time.time;
+			GameObject pellet = null;
+
+			switch (mode) {
+			case Mode.FIRE:
+				pellet = Instantiate (firePelletPrefab);
+				break;
+			case Mode.ICE:
+				pellet = Instantiate (icePelletPrefab);
+				break;
+			case Mode.WIND:
+				pellet = Instantiate (windPelletPrefab);
+				break;
+			}
+
+			//HACK-ish
+			Vector2 distance = GetShootingPoint();
+			pellet.transform.position = new Vector2(transform.position.x + distance.x, transform.position.y + distance.y);
+			pellet.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
+			pellet.GetComponent<Rigidbody2D> ().AddForce (lastDirection.normalized * 2, ForceMode2D.Impulse);
+		}
+
+		if (!isShooting) {
+			lastAttack = float.NegativeInfinity;
+		}
+	}
+
 	void SendAnimationInfo() {
 		animator.SetFloat ("xSpeed", lastDirection.x);
 		animator.SetFloat ("ySpeed", lastDirection.y);
 		animator.SetBool ("isShooting", isShooting);
+	}
+
+	//utilities
+	Vector2 GetShootingPoint() {
+		Vector2 point = lastDirection.normalized;
+
+		if (Mathf.Abs (point.x) == Mathf.Abs (point.y)) {
+			point *= 0.26f; //diagonal
+		} else if (Mathf.Abs (point.x) < Mathf.Abs (point.y)) {
+			point *= 0.23f; //vertical
+		} else {
+			point *= 0.2f; //horizontal
+		}
+
+		return point;
 	}
 }

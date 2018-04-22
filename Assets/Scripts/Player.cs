@@ -3,13 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
-	public enum Mode {
-		FIRE, ICE, WIND,
-		LAST
-	};
-
 	Animator animator;
 	Rigidbody2D rigidBody;
+	witchAnimate witchAnimateScript;
 
 	//movement
 	float speed;
@@ -17,10 +13,10 @@ public class Player : MonoBehaviour {
 	Vector2 lastDirection = new Vector2(0, -1);
 
 	//attacking
-	bool isShooting;
 	float lastAttack = float.NegativeInfinity;
 	const float attackDelay = 0.5f;
-	Mode mode = Mode.FIRE;
+
+	//prefabs
 	public GameObject firePelletPrefab;
 	public GameObject icePelletPrefab;
 	public GameObject windPelletPrefab;
@@ -28,6 +24,7 @@ public class Player : MonoBehaviour {
 	void Awake() {
 		animator = GetComponent<Animator> ();
 		rigidBody = GetComponent<Rigidbody2D> ();
+		witchAnimateScript = GetComponent<witchAnimate> ();
 
 		speed = 0.79f;
 	}
@@ -39,11 +36,11 @@ public class Player : MonoBehaviour {
 	void FixedUpdate() {
 		Move ();
 		Attack ();
-		//SendAnimationInfo ();
 	}
 
 	void HandleInput() {
 		//determine the input from the player
+		//NOTE: duplicate code
 		float horizontal = Input.GetAxis ("Horizontal");
 		float vertical = Input.GetAxis ("Vertical");
 
@@ -52,16 +49,6 @@ public class Player : MonoBehaviour {
 		//calculate last direction
 		if (deltaForce != Vector2.zero) {
 			lastDirection = rigidBody.velocity;
-		}
-
-		//calculate if shooting
-		isShooting = Input.GetButton ("Attack");
-
-		if (Input.GetButtonDown("Switch")) {
-			mode += 1;
-			if (mode == Mode.LAST) {
-				mode = 0;
-			}
 		}
 	}
 
@@ -73,18 +60,18 @@ public class Player : MonoBehaviour {
 	}
 
 	void Attack() {
-		if (Time.time - lastAttack > attackDelay && isShooting) {
+		if (Time.time - lastAttack > attackDelay && witchAnimateScript.current == witchAnimate.Deed.shoot) {
 			lastAttack = Time.time;
 			GameObject pellet = null;
 
-			switch (mode) {
-			case Mode.FIRE:
+			switch (witchAnimateScript.el) {
+			case witchAnimate.Element.fire:
 				pellet = Instantiate (firePelletPrefab);
 				break;
-			case Mode.ICE:
+			case witchAnimate.Element.ice:
 				pellet = Instantiate (icePelletPrefab);
 				break;
-			case Mode.WIND:
+			case witchAnimate.Element.wind:
 				pellet = Instantiate (windPelletPrefab);
 				break;
 			}
@@ -96,31 +83,13 @@ public class Player : MonoBehaviour {
 			pellet.GetComponent<Rigidbody2D> ().AddForce (lastDirection.normalized * 2, ForceMode2D.Impulse);
 		}
 
-		if (!isShooting) {
+		if (witchAnimateScript.current != witchAnimate.Deed.shoot) {
 			lastAttack = float.NegativeInfinity;
 		}
 	}
 
-    /*
-	void SendAnimationInfo() {
-		animator.SetFloat ("xSpeed", lastDirection.x);
-		animator.SetFloat ("ySpeed", lastDirection.y);
-		animator.SetBool ("isShooting", isShooting);
-	}
-    */
-
 	//utilities
 	Vector2 GetShootingPoint() {
-		Vector2 point = lastDirection.normalized;
-
-		if (Mathf.Abs (point.x) == Mathf.Abs (point.y)) {
-			point *= 0.26f; //diagonal
-		} else if (Mathf.Abs (point.x) < Mathf.Abs (point.y)) {
-			point *= 0.23f; //vertical
-		} else {
-			point *= 0.2f; //horizontal
-		}
-
-		return point;
+		return lastDirection.normalized * 0.15f;
 	}
 }

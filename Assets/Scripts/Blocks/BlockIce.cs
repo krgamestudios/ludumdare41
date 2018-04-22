@@ -3,16 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BlockIce : MonoBehaviour {
+	SpriteRenderer spriteRenderer;
 	Rigidbody2D rigidBody;
 
 	public float bombTimer = -1;
 
 	public GameObject bombPrefab;
+	public Sprite alternateSprite;
 
 	void Awake() {
+		spriteRenderer = GetComponent<SpriteRenderer> ();
 		rigidBody = GetComponent<Rigidbody2D> ();
 
 		rigidBody.Sleep ();
+	}
+
+	void Start() {
+		//switch if it's a bomb block
+		if (bombTimer >= 0) {
+			Sprite spr = spriteRenderer.sprite;
+			spriteRenderer.sprite = alternateSprite;
+			alternateSprite = spr;
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D collider) {

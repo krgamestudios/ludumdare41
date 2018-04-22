@@ -5666,6 +5666,48 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 55b556ac6e46dbb4abdebeb341e45cce, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &397859789
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4284655955952716, guid: fef65b57e8170f049a86ce4d2931c8ff, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4284655955952716, guid: fef65b57e8170f049a86ce4d2931c8ff, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4284655955952716, guid: fef65b57e8170f049a86ce4d2931c8ff, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4284655955952716, guid: fef65b57e8170f049a86ce4d2931c8ff, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4284655955952716, guid: fef65b57e8170f049a86ce4d2931c8ff, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4284655955952716, guid: fef65b57e8170f049a86ce4d2931c8ff, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4284655955952716, guid: fef65b57e8170f049a86ce4d2931c8ff, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4284655955952716, guid: fef65b57e8170f049a86ce4d2931c8ff, type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: fef65b57e8170f049a86ce4d2931c8ff, type: 2}
+  m_IsPrefabParent: 0
 --- !u!4 &405829488 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4890223527033060, guid: 55b556ac6e46dbb4abdebeb341e45cce,

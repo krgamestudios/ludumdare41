@@ -39,7 +39,9 @@ public class BlockIce : MonoBehaviour {
 				bomb.GetComponent<Bomb> ().timer = bombTimer;
 				bomb.GetComponent<Bomb> ().respawner = respawner;
 			}
-			respawner.enabled = true;
+			if (respawner != null) {
+				respawner.enabled = true;
+			}
 			Destroy (gameObject);
 		}
 

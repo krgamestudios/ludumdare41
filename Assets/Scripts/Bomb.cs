@@ -3,19 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Bomb : MonoBehaviour {
+	Animator animator;
 	Rigidbody2D rigidBody;
 
 	public float timer;
 
 	GameObject explosion;
 	public GameObject iceBlockPrefab;
+	public Sprite deadBomb;
 
 	public Respawner respawner; //this can be respawned
 
 	float birthTime;
 
 	void Awake() {
+		animator = GetComponent<Animator> ();
 		rigidBody = GetComponent<Rigidbody2D> ();
+
+		if (timer < 0) {
+			animator.enabled = false;
+
+		}
 	}
 
 	void Start() {
@@ -53,7 +61,9 @@ public class Bomb : MonoBehaviour {
 			yield return new WaitForSeconds (delay);
 			explosion.SetActive (true);
 			transform.DetachChildren ();
-			respawner.enabled = true;
+			if (respawner != null) {
+				respawner.enabled = true;
+			}
 			Destroy (gameObject);
 		}
 	}

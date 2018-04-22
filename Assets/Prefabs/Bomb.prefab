@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4059329389201350}
   - component: {fileID: 212367768635825822}
+  - component: {fileID: 95656190804099938}
   - component: {fileID: 50571448290894828}
   - component: {fileID: 61113286589161286}
   - component: {fileID: 114937917394596370}
@@ -184,6 +185,23 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!95 &95656190804099938
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1849067685587954}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 43e331c211cd65a46b8c87cdeaf70c38, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114649402457597828
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -210,6 +228,8 @@ MonoBehaviour:
   timer: 0
   iceBlockPrefab: {fileID: 1382120285849756, guid: c4d410a301c013a468dc133a094e5478,
     type: 2}
+  deadBomb: {fileID: 0}
+  respawner: {fileID: 0}
 --- !u!212 &212136561808670036
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -288,7 +308,7 @@ SpriteRenderer:
   m_SortingLayerID: -1935211587
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300002, guid: 4a78316eda9aad14bb3a456e2f28b38d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 519f23c01228afa47a3572ac15d543f4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

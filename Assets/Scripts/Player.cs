@@ -21,11 +21,15 @@ public class Player : MonoBehaviour {
 	public GameObject icePelletPrefab;
 	public GameObject windPelletPrefab;
 
+    AudioSource aSource;
+    public AudioClip fireClip, iceClip, windClip, switchClip;
+    
+
 	void Awake() {
 		animator = GetComponent<Animator> ();
 		rigidBody = GetComponent<Rigidbody2D> ();
 		witchAnimateScript = GetComponent<witchAnimate> ();
-
+        aSource = GetComponent<AudioSource>();
 		speed = 0.79f;
 	}
 
@@ -50,6 +54,8 @@ public class Player : MonoBehaviour {
 		if (deltaForce != Vector2.zero) {
 			lastDirection = rigidBody.velocity;
 		}
+
+        if (Input.GetButtonDown("Switch")) aSource.PlayOneShot(switchClip);
 	}
 
 	void Move() {
@@ -66,13 +72,16 @@ public class Player : MonoBehaviour {
 
 			switch (witchAnimateScript.el) {
 			case witchAnimate.Element.fire:
+                    aSource.PlayOneShot(fireClip);
 				pellet = Instantiate (firePelletPrefab);
 				break;
 			case witchAnimate.Element.ice:
-				pellet = Instantiate (icePelletPrefab);
+                    aSource.PlayOneShot(iceClip);
+                    pellet = Instantiate (icePelletPrefab);
 				break;
 			case witchAnimate.Element.wind:
-				pellet = Instantiate (windPelletPrefab);
+                    aSource.PlayOneShot(windClip);
+                    pellet = Instantiate (windPelletPrefab);
 				break;
 			}
 

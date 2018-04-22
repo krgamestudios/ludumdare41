@@ -5105,13 +5105,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
-  m_TileRefreshArray:
-  - serializedVersion: 1
-    m_DirtyIndex: 0
-  - serializedVersion: 1
-    m_DirtyIndex: 0
-  - serializedVersion: 1
-    m_DirtyIndex: 0
 --- !u!4 &160874133 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4564474961553612, guid: c4d410a301c013a468dc133a094e5478,
@@ -8769,11 +8762,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
-  m_TileRefreshArray:
-  - serializedVersion: 1
-    m_DirtyIndex: 0
-  - serializedVersion: 1
-    m_DirtyIndex: 0
 --- !u!1 &1018239510
 GameObject:
   m_ObjectHideFlags: 0
@@ -10333,10 +10321,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1602044334}
   - component: {fileID: 1602044333}
-  - component: {fileID: 1602044332}
   - component: {fileID: 1602044331}
   - component: {fileID: 1602044330}
   - component: {fileID: 1602044329}
+  - component: {fileID: 1602044335}
+  - component: {fileID: 1602044332}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -10367,7 +10356,7 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1602044328}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -10406,23 +10395,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!95 &1602044332
-Animator:
-  serializedVersion: 3
+--- !u!114 &1602044332
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1602044328}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: cbc7ce4eb98401f49a1122a3c03e5c92, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0385578d8e685e40973de0f0d406694, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dir: 0
+  el: 0
+  current: 1
+  frame: 0
+  walkingFrameRate: 0.1
+  shootingFrameRate: 0.05
 --- !u!212 &1602044333
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10480,6 +10469,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1602044335
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1602044328}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.04}
+  serializedVersion: 2
+  m_Radius: 0.05
 --- !u!4 &1607488907 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4727204445767746, guid: 05968d49eff9aa04b9087b76d2a70f50,

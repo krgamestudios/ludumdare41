@@ -39,7 +39,7 @@ public class Player : MonoBehaviour {
 	void FixedUpdate() {
 		Move ();
 		Attack ();
-		SendAnimationInfo ();
+		//SendAnimationInfo ();
 	}
 
 	void HandleInput() {
@@ -101,11 +101,13 @@ public class Player : MonoBehaviour {
 		}
 	}
 
+    /*
 	void SendAnimationInfo() {
 		animator.SetFloat ("xSpeed", lastDirection.x);
 		animator.SetFloat ("ySpeed", lastDirection.y);
 		animator.SetBool ("isShooting", isShooting);
 	}
+    */
 
 	//utilities
 	Vector2 GetShootingPoint() {

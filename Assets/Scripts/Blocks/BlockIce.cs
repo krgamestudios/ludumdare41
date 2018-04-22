@@ -11,6 +11,8 @@ public class BlockIce : MonoBehaviour {
 	public GameObject bombPrefab;
 	public Sprite alternateSprite;
 
+	public Respawner respawner; //can be respawned
+
 	void Awake() {
 		spriteRenderer = GetComponent<SpriteRenderer> ();
 		rigidBody = GetComponent<Rigidbody2D> ();
@@ -35,7 +37,9 @@ public class BlockIce : MonoBehaviour {
 				GameObject bomb = Instantiate (bombPrefab);
 				bomb.transform.position = transform.position;
 				bomb.GetComponent<Bomb> ().timer = bombTimer;
+				bomb.GetComponent<Bomb> ().respawner = respawner;
 			}
+			respawner.enabled = true;
 			Destroy (gameObject);
 		}
 

@@ -29,6 +29,23 @@ public class Respawner : MonoBehaviour {
 			instance.SetActive (true);
 			instance.transform.position = startPos;
 			timer = float.NegativeInfinity;
+
+			//what is it?
+			if (instance.GetComponent<Bomb>() != null) {
+				instance.GetComponent<Bomb> ().respawner = this;
+			}
+
+			if (instance.GetComponent<BlockIce>() != null) {
+				instance.GetComponent<BlockIce> ().respawner = this;
+			}
+
+			this.enabled = false;
+		}
+	}
+
+	void OnEnable() {
+		if (timer != float.NegativeInfinity) {
+			timer = Time.time;
 		}
 	}
 }

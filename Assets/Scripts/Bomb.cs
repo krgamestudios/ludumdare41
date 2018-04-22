@@ -10,6 +10,8 @@ public class Bomb : MonoBehaviour {
 	GameObject explosion;
 	public GameObject iceBlockPrefab;
 
+	public Respawner respawner; //this can be respawned
+
 	float birthTime;
 
 	void Awake() {
@@ -36,6 +38,7 @@ public class Bomb : MonoBehaviour {
 			GameObject iceBlock = Instantiate (iceBlockPrefab);
 			iceBlock.transform.position = transform.position;
 			iceBlock.GetComponent<BlockIce> ().bombTimer = timer - (Time.time - birthTime);
+			iceBlock.GetComponent<BlockIce> ().respawner = respawner;
 			Destroy (gameObject);
 		}
 
@@ -50,6 +53,7 @@ public class Bomb : MonoBehaviour {
 			yield return new WaitForSeconds (delay);
 			explosion.SetActive (true);
 			transform.DetachChildren ();
+			respawner.enabled = true;
 			Destroy (gameObject);
 		}
 	}

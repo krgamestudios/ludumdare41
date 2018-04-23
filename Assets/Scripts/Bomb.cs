@@ -19,7 +19,6 @@ public class Bomb : MonoBehaviour {
 	void Awake() {
 		animator = GetComponent<Animator> ();
 		rigidBody = GetComponent<Rigidbody2D> ();
-
 		if (timer < 0) {
 			animator.enabled = false;
 

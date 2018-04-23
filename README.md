@@ -6,8 +6,9 @@ This is a game developed for Ludum Dare 41.
 Credits
 ===
 
-Evan Hartshorn - Art  
-Kayne Ruse - Programming, Gameplay  
+Evan Hartshorn - Art (ehegames.com/art-portfolio)  
+Kayne Ruse - Programming, Gameplay (krgamestudios.com)  
+Ozzed - Music (ozzed.net)  
 
 Copyright
 ===

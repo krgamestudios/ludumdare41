@@ -10,12 +10,12 @@ public class PressurePlate : MonoBehaviour {
 
 	GameObject presser;
 
-    AudioSource asrc;
-    public AudioClip sound;
+	AudioSource asrc;
+	public AudioClip sound;
 
 	void Awake() {
 		spriteRenderer = GetComponent<SpriteRenderer> ();
-        asrc = GetComponent<AudioSource>();
+		asrc = GetComponent<AudioSource>();
 	}
 
 	void OnTriggerEnter2D(Collider2D collider) {
@@ -26,7 +26,7 @@ public class PressurePlate : MonoBehaviour {
 				presser = go;
 				pressed = true;
 				SwitchSprite ();
-                asrc.PlayOneShot(sound);
+				asrc.PlayOneShot(sound);
 			}
 		}
 	}
@@ -36,8 +36,8 @@ public class PressurePlate : MonoBehaviour {
 			presser = null;
 			pressed = false;
 			SwitchSprite ();
-            asrc.PlayOneShot(sound);
-        }
+			asrc.PlayOneShot(sound);
+		}
 	}
 
 	void SwitchSprite() {

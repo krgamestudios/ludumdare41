@@ -3,21 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ExplosionSoundManager : MonoBehaviour {
+	AudioSource asrc;
 
-    static AudioSource asrc;
-
-
-	// Use this for initialization
 	void Awake () {
-        if (asrc == null)
-        {
-            asrc = GetComponent<AudioSource>();
-            asrc.Play();
-        }
-	}
-	
-	
-	void LateUpdate () {
-        asrc = null;
+		asrc = GetComponent<AudioSource>();
+
+		//only play the explosion sound if the player is close enough to hear it
+		Vector3 playerPos = GameObject.Find ("Player").transform.position;
+		if (Vector3.Distance(transform.position, playerPos) <= 1) {
+			asrc.Play();
+		}
 	}
 }

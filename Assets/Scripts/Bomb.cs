@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Bomb : MonoBehaviour {
-
-    Animator animator;
+	Animator animator;
 	Rigidbody2D rigidBody;
 
 	public float timer;
@@ -16,7 +15,6 @@ public class Bomb : MonoBehaviour {
 	public Respawner respawner; //this can be respawned
 
 	float birthTime;
-    
 
 	void Awake() {
 		animator = GetComponent<Animator> ();
